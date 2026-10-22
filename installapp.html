@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cài ứng dụng Website Report</title>
+<meta name="description" content="Cài Website Report – VietNamNet lên điện thoại và máy tính">
+<meta name="theme-color" content="#1fa35a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Web Report">
+<meta property="og:title" content="Cài ứng dụng Website Report">
+<meta property="og:description" content="Báo cáo, chẩn đoán, audit, tin bài VietNamNet – cài 1 chạm">
+<meta property="og:image" content="https://accvnn.github.io/website-report/icon-512.png">
+<style>
+  :root{--g:#1fa35a;--g-d:#178a4b;--bg:#f8fafc;--card:#fff;--text:#0f172a;--mute:#64748b;--line:#e2e8f0}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:440px;margin:0 auto;padding:28px 16px 40px;text-align:center}
+  .logo{width:96px;height:96px;border-radius:24px;box-shadow:0 12px 32px rgba(31,163,90,.35);display:block;margin:0 auto 18px}
+  h1{font-size:22px;margin:0 0 6px}
+  .sub{color:var(--mute);font-size:14.5px;margin:0 0 22px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:12px;padding:15px 16px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none}
+  .btn-main{background:var(--g);color:#fff;box-shadow:0 6px 16px rgba(31,163,90,.28)}
+  .btn-main:hover{background:var(--g-d)}
+  .btn-ghost{background:#fff;color:var(--text);border:1px solid var(--line);font-weight:600;font-size:15px;padding:13px 16px;margin-top:16px}
+  .btn-ghost:hover{background:#f1f5f9}
+  .hint{color:var(--mute);font-size:12.5px;margin:10px 0 18px;line-height:1.5}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:left}
+  .qr{display:flex;align-items:center;gap:18px}
+  .qr .code{flex:0 0 auto;border:1px solid var(--line);border-radius:10px;padding:6px;background:#fff;line-height:0}
+  .qr b{display:block;font-size:15.5px;margin-bottom:6px}
+  .qr p{margin:0;color:var(--mute);font-size:13.5px;line-height:1.5}
+  .steps{display:none;margin-top:14px}
+  .steps.on{display:block}
+  .steps h3{margin:0 0 10px;font-size:15.5px}
+  .steps ol{margin:0;padding-left:20px;line-height:1.7;font-size:14px}
+  .steps .ico{width:18px;height:18px;vertical-align:-4px;color:var(--g)}
+  .ok{display:none;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px}
+  .ok.on{display:flex}
+  .ok .tick{width:52px;height:52px;border-radius:50%;background:#e7f6ee;color:var(--g);display:flex;align-items:center;justify-content:center}
+  .foot{margin-top:26px;color:#94a3b8;font-size:12px;line-height:1.6}
+  .foot a{color:var(--mute)}
+  @media (max-width:640px),(pointer:coarse){.qrcard{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <img class="logo" src="icon-512.png" alt="Website Report">
+  <h1>Website Report</h1>
+  <p class="sub">Báo cáo &amp; đánh giá website · VietNamNet</p>
+
+  <div class="ok" id="ok">
+    <div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+    <b>Đã cài Website Report</b>
+    <span class="hint" style="margin:0">Mở app từ màn hình chính hoặc thanh tác vụ.</span>
+  </div>
+
+  <button class="btn btn-main" id="install" type="button">Cài đặt Website Report</button>
+  <p class="hint" id="hint">Đang kiểm tra trình duyệt…</p>
+
+  <div class="card steps" id="steps"></div>
+
+  <div class="card qr qrcard" id="qrcard" style="margin-top:14px">
+    <div class="code"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges" width="168" height="168" role="img" aria-label="Mã QR cài Website Report"><rect width="35" height="35" fill="#fff"/><path fill="#0f172a" d="M1 1h7v1h-7zM10 1h4v1h-4zM17 1h1v1h-1zM19 1h2v1h-2zM22 1h1v1h-1zM24 1h1v1h-1zM27 1h7v1h-7zM1 2h1v1h-1zM7 2h1v1h-1zM11 2h1v1h-1zM13 2h1v1h-1zM16 2h2v1h-2zM22 2h1v1h-1zM25 2h1v1h-1zM27 2h1v1h-1zM33 2h1v1h-1zM1 3h1v1h-1zM3 3h3v1h-3zM7 3h1v1h-1zM9 3h2v1h-2zM12 3h1v1h-1zM15 3h1v1h-1zM19 3h2v1h-2zM22 3h3v1h-3zM27 3h1v1h-1zM29 3h3v1h-3zM33 3h1v1h-1zM1 4h1v1h-1zM3 4h3v1h-3zM7 4h1v1h-1zM9 4h2v1h-2zM12 4h1v1h-1zM16 4h1v1h-1zM18 4h1v1h-1zM21 4h1v1h-1zM23 4h3v1h-3zM27 4h1v1h-1zM29 4h3v1h-3zM33 4h1v1h-1zM1 5h1v1h-1zM3 5h3v1h-3zM7 5h1v1h-1zM9 5h1v1h-1zM11 5h11v1h-11zM24 5h1v1h-1zM27 5h1v1h-1zM29 5h3v1h-3zM33 5h1v1h-1zM1 6h1v1h-1zM7 6h1v1h-1zM9 6h1v1h-1zM12 6h2v1h-2zM18 6h1v1h-1zM23 6h1v1h-1zM25 6h1v1h-1zM27 6h1v1h-1zM33 6h1v1h-1zM1 7h7v1h-7zM9 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM17 7h1v1h-1zM19 7h1v1h-1zM21 7h1v1h-1zM23 7h1v1h-1zM25 7h1v1h-1zM27 7h7v1h-7zM9 8h1v1h-1zM12 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM22 8h1v1h-1zM1 9h1v1h-1zM3 9h5v1h-5zM10 9h3v1h-3zM14 9h2v1h-2zM17 9h2v1h-2zM20 9h1v1h-1zM25 9h1v1h-1zM27 9h5v1h-5zM1 10h2v1h-2zM4 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM10 10h1v1h-1zM14 10h2v1h-2zM17 10h5v1h-5zM24 10h1v1h-1zM27 10h2v1h-2zM30 10h4v1h-4zM1 11h2v1h-2zM4 11h2v1h-2zM7 11h2v1h-2zM11 11h1v1h-1zM14 11h3v1h-3zM21 11h3v1h-3zM25 11h2v1h-2zM29 11h1v1h-1zM31 11h2v1h-2zM1 12h3v1h-3zM6 12h1v1h-1zM11 12h1v1h-1zM13 12h2v1h-2zM21 12h2v1h-2zM24 12h1v1h-1zM29 12h4v1h-4zM1 13h1v1h-1zM5 13h3v1h-3zM9 13h1v1h-1zM12 13h2v1h-2zM15 13h4v1h-4zM23 13h1v1h-1zM29 13h2v1h-2zM32 13h2v1h-2zM4 14h3v1h-3zM10 14h4v1h-4zM16 14h1v1h-1zM18 14h4v1h-4zM24 14h1v1h-1zM27 14h1v1h-1zM31 14h3v1h-3zM1 15h2v1h-2zM4 15h1v1h-1zM6 15h3v1h-3zM10 15h2v1h-2zM13 15h1v1h-1zM15 15h3v1h-3zM19 15h1v1h-1zM23 15h1v1h-1zM26 15h4v1h-4zM32 15h1v1h-1zM1 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM8 16h4v1h-4zM13 16h1v1h-1zM16 16h1v1h-1zM20 16h3v1h-3zM24 16h5v1h-5zM30 16h2v1h-2zM7 17h1v1h-1zM9 17h1v1h-1zM11 17h1v1h-1zM15 17h2v1h-2zM18 17h1v1h-1zM20 17h2v1h-2zM23 17h1v1h-1zM26 17h1v1h-1zM28 17h2v1h-2zM33 17h1v1h-1zM1 18h1v1h-1zM3 18h3v1h-3zM9 18h2v1h-2zM13 18h1v1h-1zM15 18h1v1h-1zM17 18h5v1h-5zM24 18h1v1h-1zM27 18h2v1h-2zM30 18h2v1h-2zM33 18h1v1h-1zM1 19h2v1h-2zM4 19h2v1h-2zM7 19h1v1h-1zM11 19h4v1h-4zM16 19h2v1h-2zM22 19h2v1h-2zM26 19h4v1h-4zM31 19h1v1h-1zM2 20h4v1h-4zM9 20h4v1h-4zM14 20h1v1h-1zM16 20h2v1h-2zM19 20h1v1h-1zM22 20h1v1h-1zM24 20h9v1h-9zM1 21h1v1h-1zM3 21h1v1h-1zM5 21h1v1h-1zM7 21h1v1h-1zM9 21h2v1h-2zM13 21h1v1h-1zM15 21h2v1h-2zM19 21h2v1h-2zM23 21h1v1h-1zM26 21h1v1h-1zM29 21h2v1h-2zM32 21h1v1h-1zM1 22h1v1h-1zM5 22h1v1h-1zM8 22h5v1h-5zM14 22h1v1h-1zM16 22h5v1h-5zM22 22h1v1h-1zM24 22h1v1h-1zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM1 23h1v1h-1zM3 23h1v1h-1zM5 23h1v1h-1zM7 23h1v1h-1zM11 23h2v1h-2zM18 23h1v1h-1zM23 23h1v1h-1zM25 23h1v1h-1zM29 23h4v1h-4zM1 24h1v1h-1zM3 24h1v1h-1zM5 24h2v1h-2zM8 24h2v1h-2zM11 24h2v1h-2zM14 24h1v1h-1zM17 24h1v1h-1zM22 24h3v1h-3zM26 24h1v1h-1zM29 24h5v1h-5zM1 25h1v1h-1zM4 25h4v1h-4zM9 25h2v1h-2zM12 25h1v1h-1zM14 25h1v1h-1zM18 25h2v1h-2zM23 25h8v1h-8zM32 25h1v1h-1zM9 26h1v1h-1zM12 26h2v1h-2zM17 26h6v1h-6zM25 26h1v1h-1zM29 26h1v1h-1zM31 26h1v1h-1zM33 26h1v1h-1zM1 27h7v1h-7zM10 27h2v1h-2zM16 27h3v1h-3zM22 27h1v1h-1zM24 27h2v1h-2zM27 27h1v1h-1zM29 27h1v1h-1zM31 27h2v1h-2zM1 28h1v1h-1zM7 28h1v1h-1zM9 28h1v1h-1zM11 28h2v1h-2zM17 28h3v1h-3zM21 28h5v1h-5zM29 28h3v1h-3zM1 29h1v1h-1zM3 29h3v1h-3zM7 29h1v1h-1zM9 29h3v1h-3zM14 29h1v1h-1zM16 29h2v1h-2zM21 29h1v1h-1zM23 29h1v1h-1zM25 29h6v1h-6zM32 29h1v1h-1zM1 30h1v1h-1zM3 30h3v1h-3zM7 30h1v1h-1zM9 30h3v1h-3zM15 30h2v1h-2zM18 30h4v1h-4zM23 30h2v1h-2zM26 30h1v1h-1zM29 30h1v1h-1zM31 30h3v1h-3zM1 31h1v1h-1zM3 31h3v1h-3zM7 31h1v1h-1zM9 31h4v1h-4zM14 31h5v1h-5zM22 31h1v1h-1zM25 31h1v1h-1zM27 31h2v1h-2zM31 31h1v1h-1zM1 32h1v1h-1zM7 32h1v1h-1zM13 32h4v1h-4zM22 32h2v1h-2zM27 32h1v1h-1zM29 32h3v1h-3zM1 33h7v1h-7zM9 33h5v1h-5zM16 33h3v1h-3zM21 33h1v1h-1zM23 33h4v1h-4zM28 33h1v1h-1zM32 33h1v1h-1z"/></svg></div>
+    <div><b>Cài lên điện thoại</b><p>Mở Camera, quét mã này rồi làm theo hướng dẫn.</p></div>
+  </div>
+
+  <a class="btn btn-ghost" href="./">Dùng ngay trên trình duyệt</a>
+
+  <p class="foot">Cần đăng nhập email @vietnamnet.vn như khi mở Website Report.</p>
+</main>
+<script>
+(function () {
+  var ua = navigator.userAgent, btn = document.getElementById('install'), hint = document.getElementById('hint'), steps = document.getElementById('steps');
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var android = /Android/.test(ua), edge = /Edg\//.test(ua), safariMac = /Macintosh/.test(ua) && /Safari/.test(ua) && !/Chrome|Edg/.test(ua);
+  var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  var prompt = null;
+  var SHARE = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+  var DOTS = '<b>⋮</b>';
+  function manual() {
+    var h;
+    if (ios) h = '<h3>Cài trên iPhone / iPad</h3><ol><li>Mở trang này bằng <b>Safari</b>.</li><li>Bấm nút <b>Chia sẻ</b> ' + SHARE + ' ở thanh dưới.</li><li>Kéo xuống, chọn <b>Thêm vào MH chính</b> → <b>Thêm</b>.</li></ol>';
+    else if (android) h = '<h3>Cài trên Android</h3><ol><li>Mở trang này bằng <b>Chrome</b>.</li><li>Bấm ' + DOTS + ' góc trên bên phải.</li><li>Chọn <b>Cài đặt ứng dụng</b> (hoặc <b>Thêm vào màn hình chính</b>) → <b>Cài đặt</b>.</li></ol>';
+    else if (edge) h = '<h3>Cài trên Edge</h3><ol><li>Bấm <b>…</b> góc trên bên phải.</li><li>Chọn <b>Ứng dụng</b> → <b>Cài đặt Website Report</b>.</li><li>Có thể ghim app vào thanh tác vụ.</li></ol>';
+    else if (safariMac) h = '<h3>Cài trên Mac (Safari)</h3><ol><li>Chọn menu <b>Tệp</b> → <b>Thêm vào Dock</b>.</li><li>Bấm <b>Thêm</b>.</li></ol>';
+    else h = '<h3>Cài trên Chrome</h3><ol><li>Bấm biểu tượng <b>Cài đặt</b> ở cuối thanh địa chỉ, hoặc ' + DOTS + ' góc trên bên phải.</li><li>Chọn <b>Truyền, lưu và chia sẻ</b> → <b>Cài đặt Website Report…</b></li><li>Bấm <b>Cài đặt</b>.</li></ol>';
+    steps.innerHTML = h; steps.classList.add('on'); steps.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function installed() {
+    document.getElementById('ok').classList.add('on');
+    btn.textContent = 'Mở Website Report'; btn.onclick = function () { location.href = './'; };
+    hint.textContent = ''; steps.classList.remove('on');
+  }
+  function noPrompt() { hint.textContent = 'Trình duyệt chưa bật cài 1 chạm – bấm để xem cách cài (mất 10 giây).'; }
+  if (standalone) { location.replace('./'); return; }
+  if (ios) hint.textContent = 'Trên iPhone/iPad: bấm để xem cách thêm vào màn hình chính (mất 10 giây).';
+  else noPrompt();
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault(); prompt = e; hint.textContent = 'Cài 1 chạm, không cần kho ứng dụng.';
+  });
+  window.addEventListener('appinstalled', installed);
+  btn.onclick = function () {
+    if (!prompt) { manual(); return; }
+    prompt.prompt();
+    prompt.userChoice.then(function (r) { if (r.outcome === 'accepted') installed(); prompt = null; if (r.outcome !== 'accepted') noPrompt(); });
+  };
+  if (navigator.getInstalledRelatedApps) navigator.getInstalledRelatedApps().then(function (a) { if (a && a.length) installed(); }).catch(function () {});
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+})();
+</script>
+</body>
+</html>
